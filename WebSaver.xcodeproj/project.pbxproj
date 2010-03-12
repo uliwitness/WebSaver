@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		4D856DCE10845D98006C781A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D856DCD10845D98006C781A /* WebKit.framework */; };
 		4D856DF31084601E006C781A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4D856DF21084601E006C781A /* index.html */; };
+		5525541D114AE2B700279B03 /* UKWebSaverConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5525541B114AE2B700279B03 /* UKWebSaverConfigureSheet.xib */; };
 		8D255AC70486D3F9007BF209 /* WebSaver_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCFA80370C50100C91783 /* WebSaver_Prefix.pch */; };
-		8D255AC80486D3F9007BF209 /* WebSaverView.h in Headers */ = {isa = PBXBuildFile; fileRef = F50079790118B23001CA0E54 /* WebSaverView.h */; };
+		8D255AC80486D3F9007BF209 /* UKWebSaverView.h in Headers */ = {isa = PBXBuildFile; fileRef = F50079790118B23001CA0E54 /* UKWebSaverView.h */; };
 		8D255ACA0486D3F9007BF209 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
-		8D255ACC0486D3F9007BF209 /* WebSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = F500797A0118B23001CA0E54 /* WebSaverView.m */; };
+		8D255ACC0486D3F9007BF209 /* UKWebSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = F500797A0118B23001CA0E54 /* UKWebSaverView.m */; };
 		8D255ACE0486D3F9007BF209 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		8D255ACF0486D3F9007BF209 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F27B2DFFEEEFEF11CA0E56 /* ScreenSaver.framework */; };
 /* End PBXBuildFile section */
@@ -26,10 +27,11 @@
 		32DBCFA80370C50100C91783 /* WebSaver_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSaver_Prefix.pch; sourceTree = "<group>"; };
 		4D856DCD10845D98006C781A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		4D856DF21084601E006C781A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		5525541C114AE2B700279B03 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/UKWebSaverConfigureSheet.xib; sourceTree = "<group>"; };
 		8D255AD20486D3F9007BF209 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D255AD30486D3F9007BF209 /* Web.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Web.saver; sourceTree = BUILT_PRODUCTS_DIR; };
-		F50079790118B23001CA0E54 /* WebSaverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSaverView.h; sourceTree = "<group>"; };
-		F500797A0118B23001CA0E54 /* WebSaverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSaverView.m; sourceTree = "<group>"; };
+		F50079790118B23001CA0E54 /* UKWebSaverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKWebSaverView.h; sourceTree = "<group>"; };
+		F500797A0118B23001CA0E54 /* UKWebSaverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKWebSaverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				4D856DF21084601E006C781A /* index.html */,
 				8D255AD20486D3F9007BF209 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				5525541B114AE2B700279B03 /* UKWebSaverConfigureSheet.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -80,8 +83,8 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F50079790118B23001CA0E54 /* WebSaverView.h */,
-				F500797A0118B23001CA0E54 /* WebSaverView.m */,
+				F50079790118B23001CA0E54 /* UKWebSaverView.h */,
+				F500797A0118B23001CA0E54 /* UKWebSaverView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -129,7 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D255AC70486D3F9007BF209 /* WebSaver_Prefix.pch in Headers */,
-				8D255AC80486D3F9007BF209 /* WebSaverView.h in Headers */,
+				8D255AC80486D3F9007BF209 /* UKWebSaverView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +183,7 @@
 			files = (
 				8D255ACA0486D3F9007BF209 /* InfoPlist.strings in Resources */,
 				4D856DF31084601E006C781A /* index.html in Resources */,
+				5525541D114AE2B700279B03 /* UKWebSaverConfigureSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D255ACC0486D3F9007BF209 /* WebSaverView.m in Sources */,
+				8D255ACC0486D3F9007BF209 /* UKWebSaverView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,36 +219,59 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		5525541B114AE2B700279B03 /* UKWebSaverConfigureSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5525541C114AE2B700279B03 /* English */,
+			);
+			name = UKWebSaverConfigureSheet.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EF7AD72E08BB986600CE4634 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					x86_64,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				"GCC_ENABLE_OBJC_GC[sdk=macosx10.6][arch=x86_64]" = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WebSaver_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = Web;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = saver;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		EF7AD72F08BB986600CE4634 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					x86_64,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_GC = unsupported;
+				"GCC_ENABLE_OBJC_GC[sdk=macosx10.6][arch=x86_64]" = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WebSaver_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = Web;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -252,25 +279,23 @@
 		EF7AD73208BB986600CE4634 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
 		EF7AD73308BB986600CE4634 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};

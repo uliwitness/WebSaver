@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Web</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Web</string>
+	<string>com.thevoidsoftware.Web</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,6 +21,6 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>NSPrincipalClass</key>
-	<string>WebSaverView</string>
+	<string>UKWebSaverView</string>
 </dict>
 </plist>
