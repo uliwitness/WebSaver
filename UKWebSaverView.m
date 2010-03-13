@@ -23,9 +23,32 @@ NSString*	UKWebSaver = @"UKWebSaver";
     self = [super initWithFrame: frame isPreview: isPreview];
     if( self )
 	{
-		webView = [[WebView alloc] initWithFrame:[self bounds] frameName: nil groupName: nil];
+		webView = [[WebView alloc] initWithFrame:[ self bounds] frameName: nil groupName: nil];
 		[(NSScrollView*)webView setBackgroundColor: [NSColor blackColor]];	// Looks a little nicer on loading.
 		[self addSubview: webView];
+		
+		NSRect		spinnerBox = [self bounds];
+		spinnerBox.size.width = 800.0;
+		spinnerBox.size.height = 50.0;
+		spinnerBox = SSCenteredRectInRect( spinnerBox, [self bounds] );
+		pleaseWaitField = [[NSTextField alloc] initWithFrame: spinnerBox];
+		[pleaseWaitField setStringValue: @"One moment please…"];
+		[pleaseWaitField setFont: [NSFont systemFontOfSize: 48]];
+		[pleaseWaitField setAlignment: NSCenterTextAlignment];
+		[pleaseWaitField setTextColor: [NSColor whiteColor]];
+		[pleaseWaitField setDrawsBackground: NO];
+		[pleaseWaitField setBordered: NO];
+		[pleaseWaitField setBezeled: NO];
+		[pleaseWaitField setEditable: NO];
+		[[pleaseWaitField cell] setWraps: NO];
+		[self addSubview: pleaseWaitField];
+		
+		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(webViewProgressStarted:)
+													name: WebViewProgressStartedNotification
+													object: webView];
+		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(webViewProgressFinished:)
+													name: WebViewProgressFinishedNotification
+													object: webView];
 		
 		[self reloadSettings];
     }
@@ -35,10 +58,31 @@ NSString*	UKWebSaver = @"UKWebSaver";
 
 -(void)	dealloc
 {
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: WebViewProgressStartedNotification object: webView];
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: WebViewProgressFinishedNotification object: webView];
+	
 	[configureSheet release];
 	configureSheet = nil;
 	
+	[webView release];
+	webView = nil;
+	
+	[pleaseWaitField release];
+	pleaseWaitField = nil;
+	
 	[super dealloc];
+}
+
+
+-(void)	webViewProgressStarted: (NSNotification*)notif
+{
+	[pleaseWaitField setHidden: NO];
+}
+
+
+-(void)	webViewProgressFinished: (NSNotification*)notif
+{
+	[pleaseWaitField setHidden: YES];
 }
 
 

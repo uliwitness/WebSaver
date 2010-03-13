@@ -13,6 +13,7 @@
 @interface UKWebSaverView : ScreenSaverView 
 {
 	WebView				*	webView;
+	NSTextField			*	pleaseWaitField;
 	IBOutlet NSWindow	*	configureSheet;
 	IBOutlet NSTextField *	urlField;
 	IBOutlet NSMatrix	*	radioChoices;
