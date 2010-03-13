@@ -12,6 +12,7 @@
 
 
 NSString*	UKWebSaverURL = @"UKWebSaverURL";
+NSString*	UKWebSaverScaleFactor = @"UKWebSaverScaleFactor";
 NSString*	UKWebSaver = @"UKWebSaver";
 
 
@@ -19,19 +20,14 @@ NSString*	UKWebSaver = @"UKWebSaver";
 
 -(id)	initWithFrame: (NSRect)frame isPreview: (BOOL)isPreview
 {
-    self = [super initWithFrame:frame isPreview:isPreview];
+    self = [super initWithFrame: frame isPreview: isPreview];
     if( self )
 	{
 		webView = [[WebView alloc] initWithFrame:[self bounds] frameName: nil groupName: nil];
 		[(NSScrollView*)webView setBackgroundColor: [NSColor blackColor]];	// Looks a little nicer on loading.
-		
-		NSString*	urlString = [[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] objectForKey: UKWebSaverURL];
-		if( !urlString )	// No URL? Use default.
-			urlString = [NSString stringWithFormat: @"file://%@/index.html", [[NSBundle bundleForClass:[self class]] resourcePath]];
-		
-		[webView setMainFrameURL: urlString];
-		
 		[self addSubview: webView];
+		
+		[self reloadSettings];
     }
     return self;
 }
@@ -43,6 +39,25 @@ NSString*	UKWebSaver = @"UKWebSaver";
 	configureSheet = nil;
 	
 	[super dealloc];
+}
+
+
+-(void)	reloadSettings
+{
+	if( !webView )
+		return;
+	
+	// Set up any scaling:
+	NSNumber*	scaleFactorObj = [[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] objectForKey: UKWebSaverScaleFactor];
+	float		scaleFactor = scaleFactorObj ? [scaleFactorObj floatValue] : 1.0;
+	[webView setTextSizeMultiplier: scaleFactor];
+	
+	// Load URL:
+	NSString*	urlString = [[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] objectForKey: UKWebSaverURL];
+	if( !urlString )	// No URL? Use default.
+		urlString = [NSString stringWithFormat: @"file://%@/index.html", [[NSBundle bundleForClass:[self class]] resourcePath]];
+	
+	[webView setMainFrameURL: urlString];
 }
 
 
@@ -69,6 +84,11 @@ NSString*	UKWebSaver = @"UKWebSaver";
 	if( urlString )
 		[urlField setStringValue: urlString];
 	
+	// Scale factor:
+	NSNumber*	scaleFactorObj = [[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] objectForKey: UKWebSaverScaleFactor];
+	float		scaleFactor = scaleFactorObj ? [scaleFactorObj floatValue] : 1.0;
+	[scaleFactorSlider setDoubleValue: scaleFactor];
+	
 	return configureSheet;
 }
 
@@ -82,6 +102,10 @@ NSString*	UKWebSaver = @"UKWebSaver";
 		[[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] removeObjectForKey: UKWebSaverURL];	// No URL? Default.
 	else
 		[[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] setObject: [urlField stringValue] forKey: UKWebSaverURL];
+	
+	[[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] setFloat: [scaleFactorSlider doubleValue] forKey: UKWebSaverScaleFactor];
+	
+	[self reloadSettings];
 	
 	[NSApp endSheet: configureSheet];
 }

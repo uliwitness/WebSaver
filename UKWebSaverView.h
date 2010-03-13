@@ -16,11 +16,14 @@
 	IBOutlet NSWindow	*	configureSheet;
 	IBOutlet NSTextField *	urlField;
 	IBOutlet NSMatrix	*	radioChoices;
+	IBOutlet NSSlider	*	scaleFactorSlider;
 }
 
 -(IBAction)	doOKButton: (id)sender;
 -(IBAction)	doCancelButton: (id)sender;
 
 -(void)		setConfigureSheet: (NSWindow*)wd;
+
+-(void)		reloadSettings;
 
 @end
