@@ -18,6 +18,7 @@
 	IBOutlet NSTextField *	urlField;
 	IBOutlet NSMatrix	*	radioChoices;
 	IBOutlet NSSlider	*	scaleFactorSlider;
+    NSArray             *   pages;
 }
 
 -(IBAction)	doOKButton: (id)sender;

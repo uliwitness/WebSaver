@@ -9,6 +9,7 @@
 #import "UKWebSaverView.h"
 #import <WebKit/WebKit.h>
 #import <AppKit/NSNibLoading.h>
+#include <stdlib.h>
 
 
 NSString*	UKWebSaverURL = @"UKWebSaverURL";
@@ -23,6 +24,7 @@ NSString*	UKWebSaver = @"UKWebSaver";
     self = [super initWithFrame: frame isPreview: isPreview];
     if( self )
 	{
+        srandomdev();
 		webView = [[WebView alloc] initWithFrame:[ self bounds] frameName: nil groupName: nil];
 		[(NSScrollView*)webView setBackgroundColor: [NSColor blackColor]];	// Looks a little nicer on loading.
 		[self addSubview: webView];
@@ -49,6 +51,8 @@ NSString*	UKWebSaver = @"UKWebSaver";
 		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(webViewProgressFinished:)
 													name: WebViewProgressFinishedNotification
 													object: webView];
+
+        pages = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"html" inDirectory:nil];
 		
 		[self reloadSettings];
     }
@@ -98,8 +102,8 @@ NSString*	UKWebSaver = @"UKWebSaver";
 	
 	// Load URL:
 	NSString*	urlString = [[ScreenSaverDefaults defaultsForModuleWithName: UKWebSaver] objectForKey: UKWebSaverURL];
-	if( !urlString )	// No URL? Use default.
-		urlString = [NSString stringWithFormat: @"file://%@/index.html", [[NSBundle bundleForClass:[self class]] resourcePath]];
+	if( !urlString )	// No URL? Use one of the defaults.
+        urlString = [NSString stringWithFormat: @"file://%@", [pages objectAtIndex:(random() % [pages count])]];
 	
 	[webView setMainFrameURL: urlString];
 }
