@@ -4,30 +4,16 @@
     <title>spread</title>
     <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
     <script type="text/javascript">
-        var startradius = 20;
         var width = 600;
         var height = 600;
         var frame_time = 30;
-        var straighten_factor = 0.95;
-        var curviness = 0.2;
-        var color_speed = 0.03;
-        var new_branch_frames = 2;
-        var branch_shrink = 0.95;
-        var branch_opacity = 0.4;
+        var tick = 0;
     
         var paper;
         var current;
         var points = [];
-        var frame = 0;
         var fadecheck;
-        var cyclecheck;
-        var randomizecheck;
-        var wrapcheck;
     
-        function paper_click(event) {
-            draw_point(event.pageX - paper.canvas.offsetLeft, event.pageY - paper.canvas.offsetTop);
-        }
-        
         function draw_point(newPoint) {
             current.x = (current.x + newPoint.x) / 2;
             current.y = (current.y + newPoint.y) / 2;
@@ -50,10 +36,13 @@
         }
         
         function clock_tick() {
-            if (fadecheck.checked) {
+            if (fadecheck.checked && (tick == 0)) {
+                paper.fillStyle = "rgba(0,0,0,0.01)";
                 paper.fillRect(0,0,width,height);
             }
 
+            tick++;
+            tick %= 25;
             var index = Math.random() * points.length;
             index = Math.floor(index);
             var point = points[index];
@@ -62,9 +51,6 @@
         
         function setup() {
             fadecheck = document.getElementById("fadecheck");
-            cyclecheck = document.getElementById("cyclecheck");
-            randomizecheck = document.getElementById("randomizecheck");
-            wrapcheck = document.getElementById("wrapcheck");
         
             var notepad = document.getElementById("notepad");
 
@@ -82,9 +68,6 @@
             ];
             current = new Point(width/2, height/2, .5, .5, .5);
 
-            notepad.onclick = paper_click;
-            document.getElementById("branchframestext").onblur = function() {new_branch_frames = parseInt(this.value);};
-
             setInterval(clock_tick, frame_time);
         }
         
@@ -92,12 +75,7 @@
   </head>
   <body onload="setup()">
     <p>
-        <input type="checkbox" id="cyclecheck" checked="checked" /> <label for="cyclecheck">Cycle colors</label>
-        <input type="checkbox" id="fadecheck" /> <label for="fadecheck">Fade</label>
-        <input type="checkbox" id="randomizecheck" checked="checked" /> <label for="randomizecheck">Randomize Position</label>
-        <input type="checkbox" id="wrapcheck" /> <label for="wrapcheck">Wrap Edges</label>
-        <br />
-        <label for="branchframestext">Spawn new every n frames:</label> <input type="text" id="branchframestext" value="1" size="3" />
+        <input type="checkbox" id="fadecheck" checked="true"/> <label for="fadecheck">Fade</label>
     </p>
     <canvas id="notepad" width="600" height="600" style="position: absolute; top: 0px; left: 0px;"></canvas>
   </body>
