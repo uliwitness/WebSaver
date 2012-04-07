@@ -1,0 +1,288 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>spread</title>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <script type="text/javascript">
+        var width = 600;
+        var height = 600;
+        var frame_time = 30;
+        var tick = 0;
+        var pollockShimmering = "data:image/gif;base64,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"
+    
+        var paper;
+        var fadecheck;
+    
+
+var dimx = 250;
+var dimy = 250;
+var num = 0;
+var maxnum = 100;
+
+// grid of cracks
+var cgrid = [];
+var cracks = [];
+
+// color parameters
+var maxpal = 512;
+var numpal = 0;
+var goodcolor = [];
+
+// sand painters
+var sands = [];
+
+        // MAIN METHODS ---------------------------------------------
+
+
+        // METHODS -------------------------------------------------------------
+
+        function makeCrack() {
+          if (num < maxnum) {
+            // make a new crack instance
+            cracks[num] = new Crack();
+            num++;
+          }
+        }
+
+
+        function begin() {
+          // erase crack grid
+          for (y = 0; y < dimy; y++) {
+            for (x = 0; x < dimx; x++) {
+              cgrid[y * dimx + x] = 10001;
+            }
+          }
+          // make random crack seeds
+          for (k = 0; k < 16; k++) {
+            i = int(random(dimx * dimy - 1));
+            cgrid[i] = int(random(360));
+          }
+
+          // make just three cracks
+          num = 0;
+          for (k = 0; k < 3; k++) {
+            makeCrack();
+          }
+          background(255);
+        }
+
+
+
+        // COLOR METHODS -------------------------------------------------------
+
+        function somecolor() {
+          // pick some random good color
+          return goodcolor[int(random(numpal))];
+        }
+
+        function takecolor(fn) {
+          b = loadImage(fn, null, function() {
+            image(b, 0, 0);
+
+            for (x = 0; x < b.width; x++){
+              for (y = 0; y < 1; y++) {
+                c = get(x, y);
+                exists = false;
+                for (n = 0; n < numpal; n++) {
+                  if (c == goodcolor[n]) {
+                    exists = true;
+                    break;
+                  }
+                }
+                if (!exists) {
+                  // add color to pal
+                  if (numpal < maxpal) {
+                    goodcolor[numpal] = c;
+                    numpal++;
+                  }
+                }
+              }
+            }
+            begin();
+          });
+        }
+
+
+
+
+        // OBJECTS -------------------------------------------------------------
+
+        function Crack() {
+            // find placement along existing crack
+            this.findStart();
+            this.sp = new SandPainter();
+        }
+          
+        Crack.prototype.findStart = function() {
+            // pick random point
+            px = 0;
+            py = 0;
+            
+            // shift until crack is found
+            found = false;
+            timeout = 0;
+            while ((!found) || (timeout++ > 1000)) {
+                px = int(random(dimx));
+                py = int(random(dimy));
+                if (cgrid[py * dimx + px] < 10000)
+                    found=true;
+            }
+            
+            if (found) {
+              // start crack
+              a = cgrid[py * dimx + px];
+              if (random(100) < 50)
+                a -= 90 + int(random(-2, 2.1));
+              else
+                a += 90 + int(random(-2, 2.1));
+              this.startCrack(px, py, a);
+            } else {
+              //println("timeout: "+timeout);
+            }
+        }
+           
+        Crack.prototype.startCrack = function(X, Y, T) {
+            this.x = X;
+            this.y = Y;
+            this.t = T; //%360;
+            this.x += 0.61 * cos(this.t * PI / 180);
+            this.y += 0.61 * sin(this.t * PI / 180);
+        }
+                     
+        Crack.prototype.move = function() {
+            // continue cracking
+            this.x += 0.42 * cos(this.t * PI / 180);
+            this.y += 0.42 * sin(this.t * PI / 180);
+            
+            // bound check
+            z = 0.33;
+            cx = int(this.x + random(-z, z)); // add fuzz
+            cy = int(this.y + random(-z, z));
+            
+            // draw sand painter
+            this.regionColor();
+            
+            // draw black crack
+            stroke(0,85);
+            point(x + random(-z, z), y + random(-z, z));
+            
+            
+            if ((cx >= 0) && (cx < dimx) && (cy >= 0) && (cy < dimy)) {
+                // safe to check
+                if ((cgrid[cy * dimx + cx] > 10000) || (abs(cgrid[cy * dimx + cx] - t) < 5)) {
+                    // continue cracking
+                    cgrid[cy * dimx + cx] = int(this.t);
+                } else if (abs(cgrid[cy * dimx + cx] - t) > 2) {
+                    // crack encountered (not self), stop cracking
+                    this.findStart();
+                    //makeCrack();
+                }
+            } else {
+              // out of bounds, stop cracking
+              findStart();
+              //makeCrack();
+            }
+        }
+          
+        Crack.prototype.regionColor = function() {
+            // start checking one step away
+            rx = this.x;
+            ry = this.y;
+            openspace = true;
+            
+            // find extents of open space
+            while (openspace) {
+              // move perpendicular to crack
+              rx += 0.81 * sin(this.t * PI / 180);
+              ry -= 0.81 * cos(this.t * PI / 180);
+              cx = int(rx);
+              cy = int(ry);
+              if ((cx >= 0) && (cx < dimx) && (cy >= 0) && (cy < dimy)) {
+                // safe to check
+                if (cgrid[cy * dimx + cx] > 10000) {
+                  // space is open
+                } else {
+                  openspace = false;
+                }
+              } else {
+                openspace = false;
+              }
+            }
+            // draw sand painter
+            this.sp.render(rx, ry, x, y);
+        }
+
+
+        function SandPainter() {
+            this.c = somecolor();
+            this.g = random(0.01, 0.1);
+        }
+
+        SandPainter.prototype.render = function render(x, y, ox, oy) {
+            // modulate gain
+            this.g += random(-0.050, 0.050);
+            maxg = 1.0;
+            if (this.g < 0)
+                this.g = 0;
+            if (this.g > maxg)
+                this.g = maxg;
+        
+            // calculate grains by distance
+            //int grains = int(sqrt((ox-x)*(ox-x)+(oy-y)*(oy-y)));
+            grains = 64;
+
+            // lay down grains of sand (transparent pixels)
+            w = this.g / (grains - 1);
+            for (i = 0; i < grains; i++) {
+              a = 0.1 - i / (grains * 10.0);
+              stroke(red(this.c), green(this.c), blue(this.c), a*256);
+              point(ox + (x - ox) * sin(sin(i * w)), oy + (y - oy) * sin(sin(i * w)));
+            }
+        }
+
+        // PREVIOUS METHODS ----------------------------------------------------
+
+
+        function clock_tick() {
+            if (fadecheck.checked && (tick == 0)) {
+                paper.fillStyle = "rgba(0,0,0,0.01)";
+                paper.fillRect(0,0,width,height);
+            }
+
+            tick++;
+            tick %= 25;
+            // crack all cracks
+            for (n = 0; n < num; n++) {
+                cracks[n].move();
+            }
+        }
+        
+        function setup() {
+            fadecheck = document.getElementById("fadecheck");
+        
+            var notepad = document.getElementById("notepad");
+
+            width = notepad.width = window.innerWidth;
+            height = notepad.height = window.innerHeight;
+      
+            paper = notepad.getContext("2d");
+            paper.fillStyle = "rgb(255,255,255)";
+            paper.fillRect(0,0,width,height);
+
+            takecolor(pollockShimmering);
+            cgrid = [];
+            cracks = [];
+
+            notepad.onclick = begin;
+            setInterval(clock_tick, frame_time);
+        }
+        
+    </script>
+  </head>
+  <body onload="setup()">
+    <p>
+        <input type="checkbox" id="fadecheck" checked="true"/> <label for="fadecheck">Fade</label>
+    </p>
+    <canvas id="notepad" width="600" height="600" style="position: absolute; top: 0px; left: 0px;"></canvas>
+  </body>
+</html>
