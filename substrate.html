@@ -262,13 +262,14 @@
 
       var img = new Image();
       img.src = pollockShimmering;
-      paper.drawImage(img, 0, 0);
       if (img.complete) {
+        paper.drawImage(img, 0, 0);
         takecolor(img);
         begin();
         img.onload=function(){};
       } else {
         img.onload = function() {
+          paper.drawImage(img, 0, 0);
           takecolor(img);
           begin();
           // clear onLoad, IE behaves erratically with animated gifs otherwise
