@@ -1,0 +1,82 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>serpinski</title>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <script type="text/javascript">
+        var width = 600;
+        var height = 600;
+        var frame_time = 30;
+        var tick = 0;
+    
+        var paper;
+        var current;
+        var points = [];
+        var fadecheck;
+    
+        function draw_point(newPoint) {
+            current.x = (current.x + newPoint.x) / 2;
+            current.y = (current.y + newPoint.y) / 2;
+            current.r = (current.r + newPoint.r) / 2;
+            current.g = (current.g + newPoint.g) / 2;
+            current.b = (current.b + newPoint.b) / 2;
+            var colour = "rgb(" + Math.floor(current.r * 255) +
+                         "," + Math.floor(current.g * 255) +
+                         "," + Math.floor(current.b * 255) + ")";
+            paper.fillStyle = colour;
+            paper.fillRect(current.x, current.y, 2, 2);
+        }
+        
+        function Point(x, y, r, g, b) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.g = g;
+            this.b = b;
+        }
+        
+        function clock_tick() {
+            if (fadecheck.checked && (tick == 0)) {
+                paper.fillStyle = "rgba(0,0,0,0.01)";
+                paper.fillRect(0,0,width,height);
+            }
+
+            tick++;
+            tick %= 25;
+            var index = Math.random() * points.length;
+            index = Math.floor(index);
+            var point = points[index];
+            draw_point(point);
+        }
+        
+        function setup() {
+            fadecheck = document.getElementById("fadecheck");
+        
+            var notepad = document.getElementById("notepad");
+
+            width = notepad.width = window.innerWidth;
+            height = notepad.height = window.innerHeight;
+      
+            paper = notepad.getContext("2d");
+            paper.fillStyle = "rgb(0,0, 0)";
+            paper.fillRect(0,0,width,height);
+
+            points = [
+                new Point(width/2, 10, 1, 0, 0 ),
+                new Point(10, height-10, 0, 1, 0),
+                new Point(width-10, height-10, 0, 0, 1)
+            ];
+            current = new Point(width/2, height/2, .5, .5, .5);
+
+            setInterval(clock_tick, frame_time);
+        }
+        
+    </script>
+  </head>
+  <body onload="setup()">
+    <p>
+        <input type="checkbox" id="fadecheck" checked="true"/> <label for="fadecheck">Fade</label>
+    </p>
+    <canvas id="notepad" width="600" height="600" style="position: absolute; top: 0px; left: 0px;"></canvas>
+  </body>
+</html>

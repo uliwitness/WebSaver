@@ -1,0 +1,146 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>roads</title>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <script type="text/javascript">
+    var width = 600;
+    var height = 600;
+    var frame_time = 30;
+
+    var roadImage = "data:image/gif;base64,R0lGODlhHgAUAKIAAAAAACIgFv%2FMZv%2F%2F%2FwAAAAAAAAAAAAAAACH5BAkAAAQAIf8LSUNDUkdCRzEwMTL%2FAAAHqGFwcGwCIAAAbW50clJHQiBYWVogB9kAAgAZAAsAGgALYWNzcEFQUEwAAAAAYXBwbAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgAAABvZHNjbQAAAXgAAAVsY3BydAAABuQAAAA4d3RwdAAABxwAAAAUclhZWgAABzAAAAAUZ1hZWgAAB0QAAAAUYlhZWgAAB1gAAAAUclRSQwAAB2wAAAAOY2hhZAAAB3wAAAAsYlRSQwAAB2wAAAAOZ1RS%2F0MAAAdsAAAADmRlc2MAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5lcmljIFJHQiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB4AAAAMc2tTSwAAACgAAAF4aHJIUgAAACgAAAGgY2FFUwAAACQAAAHIcHRCUgAAACYAAAHsdWtVQQAAACoAAAISZnJGVQAAACgAAAI8emhUVwAAABYAAAJkaXRJVAAAACgAAAJ6bmJOTwAAACYAAAKia29LUgAAABYAAP8CyGNzQ1oAAAAiAAAC3mhlSUwAAAAeAAADAGRlREUAAAAsAAADHmh1SFUAAAAoAAADSnN2U0UAAAAmAAAConpoQ04AAAAWAAADcmphSlAAAAAaAAADiHJvUk8AAAAkAAADomVsR1IAAAAiAAADxnB0UE8AAAAmAAAD6G5sTkwAAAAoAAAEDmVzRVMAAAAmAAAD6HRoVEgAAAAkAAAENnRyVFIAAAAiAAAEWmZpRkkAAAAoAAAEfHBsUEwAAAAsAAAEpHJ1UlUAAAAiAAAE0GFyRUcAAAAmAAAE8mVuVVMAAAAmAAAFGGRhREsAAAAuAAAFPgBWAWEAZQBvAGIAZQD%2FYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsAEcAZQBuAGUAcgBpAQ0AawBpACAAUgBHAEIAIABwAHIAbwBmAGkAbABQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6AByAGkAYwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAAZwDpAG4A6QByAGkAcQB1AGUAIABSAFYAQpAadSgAIABSAEcAQgAggnJfaWPPj%2FAAUAByAG8AZgBp%2FwBsAG8AIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzHfABPAGIAZQBjAG4A%2FQAgAFIARwBCACAAcAByAG8AZgBpAGwF5AXoBdUF5AXZBdwAIABSAEcAQgAgBdsF3AXcBdkAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbADBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8AZgBpAGxmbpAaACAAUgBHAEIAIGPPj%2F%2FwZYdO9k4AgiwAIABSAEcAQgAgMNcw7TDVMKEwpDDrAFAAcgBvAGYAaQBsACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjA5MDtQO9A7kDugPMACADwAPBA78DxgOvA7sAIABSAEcAQgBQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6QByAGkAYwBvAEEAbABnAGUAbQBlAGUAbgAgAFIARwBCAC0AcAByAG8AZgBpAGUAbA5CDhsOIw5EDh8OJQ5MACAAUgBHAEIAIA4XDjEOSA4nDkQOGwBHAGUAbgBlAGwAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGkAWQBsAGX%2FAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwAaQBVAG4AaQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAFIARwBCBB4EMQRJBDgEOQAgBD8EQAQ%2BBEQEOAQ7BEwAIABSAEcAQgZFBkQGQQAgBioGOQYxBkoGQQAgAFIARwBCACAGJwZEBjkGJwZFAEcAZQBuAGUAcgBpAGMAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGUARwBlAG4AZQByAGUAbAAgAFIARwBCAC0AYgBlAHMAawByAGkAdgBlAGwAcwBldGV4dAAAAABDb3B5cmlnaHQgMjAwrzcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v%2F%2F8yYAAAeSAAD9kf%2F%2F%2B6L%2F%2F%2F2jAAAD3AAAwGwALAAAAAAeABQAAANFSBDc%2FvABoqK9bFbMnV5d%2BHFC2Y1YKZwUeKns9pocOq91S9KYbcE52Y938UWAPV2KaDFCkEXlLeYa4pLCUDSrjTi7EkICADs%3D";
+
+    var grassImage = "data:image/gif;base64,R0lGODlhHgAUALMAABN%2FABSAARp%2FABuAACJ%2FACOAASl%2FACuAATB%2FADOAADqAAECAAAAAAAAAAAAAAAAAACH5BAkAAAwAIf8LSUNDUkdCRzEwMTL%2FAAAHqGFwcGwCIAAAbW50clJHQiBYWVogB9kAAgAZAAsAGgALYWNzcEFQUEwAAAAAYXBwbAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgAAABvZHNjbQAAAXgAAAVsY3BydAAABuQAAAA4d3RwdAAABxwAAAAUclhZWgAABzAAAAAUZ1hZWgAAB0QAAAAUYlhZWgAAB1gAAAAUclRSQwAAB2wAAAAOY2hhZAAAB3wAAAAsYlRSQwAAB2wAAAAOZ1RS%2F0MAAAdsAAAADmRlc2MAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5lcmljIFJHQiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB4AAAAMc2tTSwAAACgAAAF4aHJIUgAAACgAAAGgY2FFUwAAACQAAAHIcHRCUgAAACYAAAHsdWtVQQAAACoAAAISZnJGVQAAACgAAAI8emhUVwAAABYAAAJkaXRJVAAAACgAAAJ6bmJOTwAAACYAAAKia29LUgAAABYAAP8CyGNzQ1oAAAAiAAAC3mhlSUwAAAAeAAADAGRlREUAAAAsAAADHmh1SFUAAAAoAAADSnN2U0UAAAAmAAAConpoQ04AAAAWAAADcmphSlAAAAAaAAADiHJvUk8AAAAkAAADomVsR1IAAAAiAAADxnB0UE8AAAAmAAAD6G5sTkwAAAAoAAAEDmVzRVMAAAAmAAAD6HRoVEgAAAAkAAAENnRyVFIAAAAiAAAEWmZpRkkAAAAoAAAEfHBsUEwAAAAsAAAEpHJ1UlUAAAAiAAAE0GFyRUcAAAAmAAAE8mVuVVMAAAAmAAAFGGRhREsAAAAuAAAFPgBWAWEAZQBvAGIAZQD%2FYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsAEcAZQBuAGUAcgBpAQ0AawBpACAAUgBHAEIAIABwAHIAbwBmAGkAbABQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6AByAGkAYwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAAZwDpAG4A6QByAGkAcQB1AGUAIABSAFYAQpAadSgAIABSAEcAQgAggnJfaWPPj%2FAAUAByAG8AZgBp%2FwBsAG8AIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzHfABPAGIAZQBjAG4A%2FQAgAFIARwBCACAAcAByAG8AZgBpAGwF5AXoBdUF5AXZBdwAIABSAEcAQgAgBdsF3AXcBdkAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbADBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8AZgBpAGxmbpAaACAAUgBHAEIAIGPPj%2F%2FwZYdO9k4AgiwAIABSAEcAQgAgMNcw7TDVMKEwpDDrAFAAcgBvAGYAaQBsACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjA5MDtQO9A7kDugPMACADwAPBA78DxgOvA7sAIABSAEcAQgBQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6QByAGkAYwBvAEEAbABnAGUAbQBlAGUAbgAgAFIARwBCAC0AcAByAG8AZgBpAGUAbA5CDhsOIw5EDh8OJQ5MACAAUgBHAEIAIA4XDjEOSA4nDkQOGwBHAGUAbgBlAGwAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGkAWQBsAGX%2FAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwAaQBVAG4AaQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAFIARwBCBB4EMQRJBDgEOQAgBD8EQAQ%2BBEQEOAQ7BEwAIABSAEcAQgZFBkQGQQAgBioGOQYxBkoGQQAgAFIARwBCACAGJwZEBjkGJwZFAEcAZQBuAGUAcgBpAGMAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGUARwBlAG4AZQByAGUAbAAgAFIARwBCAC0AYgBlAHMAawByAGkAdgBlAGwAcwBldGV4dAAAAABDb3B5cmlnaHQgMjAwrzcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v%2F%2F8yYAAAeSAAD9kf%2F%2F%2B6L%2F%2F%2F2jAAAD3AAAwGwALAAAAAAeABQAAAT%2FMCW1xqBnLmmlVhmlaMdBDQIWlsCljJ65lFRxJQOQzEV2FIGBZLSA7QqFk1AxCGSQJpZQ0ospCqmKQBJwglYHy8sDM4krt1wSOfoFChOPpIQ%2BJZlv3A3Z%2BpXiEloUBAYjTXBiV0AXJSZtBwtsCwaNAQCIcAlITU9DCX8FBCIjeEIGBD4HLS%2BZY4AfIE1CPxNIQTAvf58TdLkWPSGfQAFyc38vAwVFhgLAPlcAAQtFn7FwRRbLeLovM13TG7x5G28vrAB%2FNDMt022aLTsH5ROKUD3TCQID7XOLtQKQqEHJMCDglQsbWP3yFbCdiU%2FJ%2BMEhAiJUkg3XwJm78gZcpF1jEP60Q7DDY7cwyvh1U0lBWwQAOw%3D%3D";
+
+    var paper;
+    var tick;
+
+    var roads;
+    
+
+    // UTILITY METHODS -----------------------------------------------------
+
+    function random(x, y) {
+      if (y == undefined) {
+        y = x;
+        x = 0;
+      }
+      return Math.random() * (y-x) + x;
+    }
+
+    function randInt(x, y) {
+      return Math.floor(random(x, y));
+    }
+
+    function makeRoad() {
+      // make a new road
+      if (roads.length < 3)
+        roads.push(new Road());
+    }
+
+    function loadImage(imageSrc, callback)
+    {
+      var img = new Image();
+      img.src = imageSrc;
+      if (img.complete) {
+        callback(img);
+        img.onload=function(){};
+      } else {
+        img.onload = function() {
+          callback(img);
+          // clear onLoad, IE behaves erratically with animated gifs otherwise
+          img.onload=function(){};
+        }
+        img.onerror = function() {
+          alert("Could not load image.");
+        }
+      }
+
+    }
+
+    // OBJECTS -------------------------------------------------------------
+
+    function Road() {
+      // find placement along existing crack
+      this.findStart();
+    }
+
+    Road.prototype.findStart = function() {
+      this.direction = (randInt(2) == 1); // True = up, false = down.
+      this.x = randInt(width);
+      this.y = this.direction ? height : 0;
+      this.imageY = randInt(roadImage.height);
+    }
+
+    Road.prototype.move = function() {
+      this.y += (this.direction ? -1 : 1);
+      if (this.y < 0 || this.y > height) {
+        this.findStart();
+        return;
+      }
+      this.imageY++;
+      this.imageY %= roadImage.height;
+      this.draw();
+    }
+
+    Road.prototype.draw = function() {
+      //console.log("Drawing road at "+this.x +","+this.y);
+      paper.drawImage(roadImage,
+                      0, this.imageY, roadImage.width, 1,
+                      this.x, this.y, roadImage.width, 1);
+    }
+
+
+    // PREVIOUS METHODS ----------------------------------------------------
+
+    function begin() {
+      // Clear some variables.
+      tick = 0;
+      roads = [];
+
+      loadImage(grassImage, function (img) {
+        var grass = paper.createPattern(img, "repeat");  
+        // Clear the frame.
+        paper.strokeStyle = "rgba(0,0,0,0)";
+        paper.fillStyle = grass;
+        paper.fillRect(0,0,width,height);
+        makeRoad();
+      });
+
+    }
+
+    function clock_tick() {
+      // move all roads
+      for (var n = 0; n < roads.length; n++)
+        roads[n].move();
+
+      tick++;
+      tick %= 500;
+      if (tick == 0) {
+        makeRoad();
+      }
+    }
+    
+    function setup() {
+      var notepad = document.getElementById("notepad");
+
+      width = notepad.width = window.innerWidth;
+      height = notepad.height = window.innerHeight;
+
+      paper = notepad.getContext("2d");
+
+      loadImage(roadImage, function (img) {
+        roadImage = img;
+        begin();
+      });
+
+      notepad.onclick = begin;
+      setInterval(clock_tick, frame_time);
+    }
+
+    </script>
+  </head>
+  <body onload="setup()">
+    <canvas id="notepad" width="600" height="600" style="position: absolute; top: 0px; left: 0px;"></canvas>
+  </body>
+</html>

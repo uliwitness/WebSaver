@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B785323152FB7B600830D34 /* serpinski.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B785321152FB7B600830D34 /* serpinski.html */; };
+		0BD80F3015311576004A21B8 /* substrate.html in Resources */ = {isa = PBXBuildFile; fileRef = 0BD80F2F15311576004A21B8 /* substrate.html */; };
 		4D856DCE10845D98006C781A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D856DCD10845D98006C781A /* WebKit.framework */; };
 		4D856DF31084601E006C781A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4D856DF21084601E006C781A /* index.html */; };
 		5525541D114AE2B700279B03 /* UKWebSaverConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5525541B114AE2B700279B03 /* UKWebSaverConfigureSheet.xib */; };
@@ -23,6 +25,8 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		0B785321152FB7B600830D34 /* serpinski.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = serpinski.html; sourceTree = "<group>"; };
+		0BD80F2F15311576004A21B8 /* substrate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = substrate.html; sourceTree = "<group>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCFA80370C50100C91783 /* WebSaver_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSaver_Prefix.pch; sourceTree = "<group>"; };
 		4D856DCD10845D98006C781A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
@@ -72,6 +76,8 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BD80F2F15311576004A21B8 /* substrate.html */,
+				0B785321152FB7B600830D34 /* serpinski.html */,
 				4D856DF21084601E006C781A /* index.html */,
 				8D255AD20486D3F9007BF209 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -166,7 +172,11 @@
 			isa = PBXProject;
 			buildConfigurationList = EF7AD73108BB986600CE4634 /* Build configuration list for PBXProject "WebSaver" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 089C166AFE841209C02AAC07 /* WebSaver */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +194,8 @@
 				8D255ACA0486D3F9007BF209 /* InfoPlist.strings in Resources */,
 				4D856DF31084601E006C781A /* index.html in Resources */,
 				5525541D114AE2B700279B03 /* UKWebSaverConfigureSheet.xib in Resources */,
+				0B785323152FB7B600830D34 /* serpinski.html in Resources */,
+				0BD80F3015311576004A21B8 /* substrate.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
